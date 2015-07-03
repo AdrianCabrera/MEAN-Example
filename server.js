@@ -1,37 +1,34 @@
 var express = require('express');
+var mongojs = require('mongojs');
+var bodyParser = require('body-parser');
 var http = require('http');
 var app = express();
 var port=3000;
 
+
+var db = mongojs("contactList",["contactList"]);
+
 app.use(express.static(__dirname+"/public"));
+
+app.use(bodyParser.json());
 
 app.listen(port,function(){
 	console.log('Server runing on port: '+port);
 })
 
-
-
 app.get("/contactList",function(req,res){
 	console.log("I received a GET request");
 	
-  	person1={
-  		name:"Adri1",
-  		email:"adrian1@test.com",
-  		number:"111"
-  	};
-  	person2={
-  		name:"Adri2",
-  		email:"adrian2@test.com",
-  		number:"222"
-  	};
-  	person3={
-  		name:"Adri3",
-  		email:"adrian3@test.com",
-  		number:"333"
-  	};
+	db.contactList.find(function(err,docs){
+		console.log(docs);
+		res.json(docs);
+	});
+});
 
-  	var contactList=[person1,person2,person3];
-  	
-	res.json(contactList);
-
+app.post("/contactList",function(req,res){
+	console.log("I received a POST request");
+	console.log(req.body);
+	db.contactList.insert(req.body,function(err,docs){
+		res.json(docs);
+	});
 });
