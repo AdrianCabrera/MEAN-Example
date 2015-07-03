@@ -23,7 +23,7 @@
 			<tbody>
 				<tr>
 					<td>
-						<input type="text" class="form-contact" ng-model="contact.name" />
+						<input type="text" class="form-contact" ng-model="contact.name" autofocus="autofocus"/>
 					</td>
 					<td>
 						<input type="text" class="form-contact" ng-model="contact.email" />
@@ -32,11 +32,11 @@
 						<input type="text" class="form-contact" ng-model="contact.number" />
 					</td>
 					<td>
-						<button ng-show="contact._id" class="btn btn-primary" ng-click="update()">Update</button>
-						<button ng-show="!contact._id" class="btn btn-primary" ng-click="addContact()">Add Contact</button>
+						<button ng-show="contact._id" class="btn btn-primary" ng-disabled="(!contact.name||!contact.email||!contact.number)" ng-click="update()">Update</button>
+						<button ng-show="!contact._id" class="btn btn-primary" ng-disabled="(!contact.name||!contact.email||!contact.number)" ng-click="addContact()">Add Contact</button>
 					</td>
 					<td>
-						<button class="btn btn-warning" ng-click="clear()">Cancel</button>
+						<button ng-show="(contact._id||contact.name||contact.email||contact.number)" class="btn btn-warning" ng-click="clear()">Cancel</button>
 					</td>
 				</tr>
 				<tr ng-repeat="contact in contactList">
