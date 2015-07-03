@@ -31,6 +31,31 @@
   		});
   	};
 
+  	$scope.remove=function(id){
+  		console.log(id);
+  		$http.delete("/contactList/" + id).success(function(response){
+  			console.log(response);
+  			refresh();
+  		});
+  	};
 
+  	$scope.edit=function(id){
+  		console.log(id);
+  		$http.get("/contactList/" + id).success(function(response){
+  			$scope.contact = response;
+  			console.log(response);
+  		});
+  	};
+
+  	$scope.update=function(){
+  		console.log($scope.contact._id);
+  		$http.put("/contactList/" + $scope.contact._id,$scope.contact).success(function(response){
+  			console.log(response);
+  			refresh();
+  		});
+  	};
+  	$scope.clear=function(){
+  		$scope.contact = "";
+  	};
 
   }]);
