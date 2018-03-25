@@ -3,13 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Mean Example Adrián Cabrera Suárez</title>
+	<title>Mean Example </title>
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
 </head>
 <body>
 	<div class="container" ng-controller="AppCtrl">
-		<h1>Mean Example Adrián Cabrera Suárez</h1>
+		<h1>Mean Example </h1>
 		<table class="table">
 			<thead>
 				<tr>
@@ -39,7 +39,7 @@
 						<button ng-show="(contact._id||contact.name||contact.email||contact.number)" class="btn btn-warning" ng-click="clear()">Cancel</button>
 					</td>
 				</tr>
-				<tr ng-repeat="contact in contactList">
+				<tr ng-repeat="contact in contactList track by $index">
 					<td>{{contact.name}}</td>
 					<td>{{contact.email}}</td>
 					<td>{{contact.number}}</td>
